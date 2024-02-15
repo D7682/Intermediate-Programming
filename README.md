@@ -30,7 +30,6 @@ Compressed folders containing the completed assignments are available in the `Co
 ## Additional Notes
 
 - Ensure you have GCC installed. Refer to the provided `GCC Installation Proof Screenshot.png` for verification.
-- For any questions or issues, please contact [your name or instructor's name].
 
 ## License
 
