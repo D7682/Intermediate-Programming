@@ -1,4 +1,4 @@
-# Compiling C Programs in Assignment2 Folder
+# Compiling C Programs in Assignment0 (Extra Credit) Folder
 
 ## Prerequisites
 Before running the script, make sure you have the following installed:
