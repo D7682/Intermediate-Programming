@@ -9,9 +9,9 @@ int main() {
     // Clear the screen
     printf(CLEAR);
 
-    // This code does what was requested, but I moved the process of initializing and reassigning
-    // the structs themselves to separate functions appropriately to make the code easier to read.
-    // I used the Go Programming Language to generate some dummy data that I could use in this program.
+    // This code does what was requested, but I moved the code that modifies values to functions in the header file
+    // and we are able to initialize easily each struct in here. This was to make the code easier or quicker to read.
+    // Using the Go Programming Language I generated some dummy data on my local computer which I used in this program.
     struct Customer customer = NewCustomer(1, "John Doe", "123 Main St, Anytown, USA", "john.doe@example.com");
     struct Product product = NewProduct(1, "Product A", 10.99, 100);
     struct Sale sale = NewSale(1, 1234, 1099.00);
