@@ -1,119 +1,46 @@
 #include <stdio.h>
-#include <string.h> // for strcpy
+#include <string.h> // Include for strcpy()
 
-struct Customer {
-    int ID;
-    char Name[50];
-    char Address[100];
-    char Email[40];
-};
-
-struct Sale {
-    int CustomerID;
-    int ProductID;
-    double Amount;
-};
-
-struct Product {
+typedef struct {
     int ID;
     char Name[50];
     double Price;
     int Quantity;
-};
+} Product;
 
-// Set functions for Product
-void SetProductID(struct Product *p, int id) {
-    p->ID = id;
-}
+typedef struct {
+    int ID;
+    char Name[50];
+    char Address[100];
+    char Email[40];
+} Customer;
 
-void SetProductName(struct Product *p, const char *name) {
-    strncpy(p->Name, name, sizeof(p->Name)-1);
-    p->Name[sizeof(p->Name)-1] = '0'; 
-}
+typedef struct {
+    int CustomerID;
+    int ProductID;
+    double Amount;
+} Sale;
 
-void SetProductPrice(struct Product *p, double price) {
-    p->Price = price;
-}
 
-void SetProductQuantity(struct Product *p, int quantity) {
-    p->Quantity = quantity;
-}
+// Constructor functions and "methods" for each type.
+Product NewProduct(int id, char *name, double price, int quantity) {
+    Product product = {
+        .ID = id,
+        .Price = price,
+        .Quantity = quantity
+    };
+    
+    // Copy name
+    if (name != NULL) {
+        strncpy(product.Name, name, 49);
+        product.Name[49] = '\0'; // Ensure null-terminated
+    }
 
-// Set functions for Customer
-void SetCustomerID(struct Customer *c, int id) {
-    c->ID = id;
-}
-
-void SetCustomerName(struct Customer *c, const char *name) {
-    strncpy(c->Name, name, sizeof(c->Name)-1);
-    c->Name[sizeof(c->Name)-1] = '0';
-}
-
-void SetCustomerAddress(struct Customer *c, const char *address) {
-    strncpy(c->Address, address, sizeof(c->Address)-1);
-    c->Address[sizeof(c->Address)-1] = '0';
-}
-
-void SetCustomerEmail(struct Customer *c, const char *email) {
-    strncpy(c->Email, email, sizeof(c->Email)-1);
-    c->Email[sizeof(c->Email)-1] = '0';
-}
-
-// Set functions for Sale
-void SetSaleCustomerID(struct Sale *s, int customerID) {
-    s->CustomerID = customerID;
-}
-
-void SetSaleProductID(struct Sale *s, int productID) {
-    s->ProductID = productID;
-}
-
-void SetSaleAmount(struct Sale *s, double amount) {
-    s->Amount = amount;
-}
-
-// Constructor functions
-struct Product NewProduct(int id, const char *name, double price, int quantity) {
-    struct Product product;
-    product.ID = id;
-    strcpy(product.Name, name);
-    product.Price = price;
-    product.Quantity = quantity;
     return product;
 }
 
-struct Customer NewCustomer(int id, const char *name, const char *address, const char *email) {
-    struct Customer customer;
-    customer.ID = id;
-    strcpy(customer.Address, address);
-    strcpy(customer.Email, email);
-    strcpy(customer.Name, name);
-    return customer;
-    
-}
 
-struct Sale NewSale(int productID, int customerID, double amount) {
-    struct Sale sale;
-    sale.CustomerID = customerID;
-    sale.ProductID = productID;
-    sale.Amount = amount;
-    return sale;
-}
-
-
-// Set the print functions that take in a struct and format the output into the terminal.
-
-// PrintCustomer function prints the details of the given customer
-void PrintCustomer(struct Customer customer) {
-    printf("Customer Profile: \n");
-    printf("ID: %d\n", customer.ID);
-    printf("Name: %s\n", customer.Name);
-    printf("Address: %s\n", customer.Address);
-    printf("Email: %s\n\n", customer.Email);
-}
-
-// PrintProduct prints the details of the given product
-void PrintProduct(struct Product product) {
+void PrintProduct(Product product) {
     printf("Product Details: \n");
     printf("ID: %d\n", product.ID);
     printf("Name: %s\n", product.Name);
@@ -121,8 +48,50 @@ void PrintProduct(struct Product product) {
     printf("Quantity: %d\n\n", product.Quantity);
 }
 
-// PrintSale prints the details of the given sale
-void PrintSale(struct Sale sale) {
+Customer NewCustomer(int id, char *name, char *address, char *email) {
+    Customer customer = {
+        .ID = id
+    };
+
+    // Copy name
+    if (name != NULL) {
+        strncpy(customer.Name, name, 49);
+        customer.Name[49] = '\0'; // Ensure null-terminated
+    }
+
+    // Copy address
+    if (address != NULL) {
+        strncpy(customer.Address, address, 99);
+        customer.Address[99] = '\0'; // Ensure null-terminated
+    }
+
+    // Copy email
+    if (email != NULL) {
+        strncpy(customer.Email, email, 39);
+        customer.Email[39] = '\0'; // Ensure null-terminated
+    }
+
+    return customer;
+}
+
+void PrintCustomer(Customer customer) {
+    printf("Customer Profile: \n");
+    printf("ID: %d\n", customer.ID);
+    printf("Name: %s\n", customer.Name);
+    printf("Address: %s\n", customer.Address);
+    printf("Email: %s\n\n", customer.Email);
+}
+
+Sale NewSale(int productID, int customerID, double amount) {
+    Sale sale = {
+        .CustomerID = customerID,
+        .ProductID = productID,
+        .Amount = amount
+    };
+    return sale;
+}
+
+void PrintSale(Sale sale) {
     printf("\n");
     printf("Sale Details: \n");
     printf("Product ID: %d\n", sale.ProductID);

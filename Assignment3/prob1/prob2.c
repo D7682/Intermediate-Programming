@@ -1,5 +1,6 @@
 #include "prob1.h"
 
+// ANSI escape codes for colored text
 #define YELLOW "\033[0;93m"
 #define RESET "\033[0m"
 #define CLEAR "\033[2J"
@@ -9,39 +10,47 @@ int main() {
     // Clear the screen
     printf(CLEAR);
 
-    // This code does what was requested, but I moved the code that modifies values to functions in the header file
-    // and we are able to initialize easily each struct in here. This was to make the code easier or quicker to read.
-    // Using the Go Programming Language I generated some dummy data on my local computer which I used in this program.
-    struct Customer customer = NewCustomer(1, "John Doe", "123 Main St, Anytown, USA", "john.doe@example.com");
-    struct Product product = NewProduct(1, "Product A", 10.99, 100);
-    struct Sale sale = NewSale(1, 1234, 1099.00);
+    // Initialization of variables and print initial values (as requested explicitly by our assignment)
+    /*
+        In this section:
+        1. Variables are initialized with dummy values for each struct type.
+        2. Initial values of each type are printed in the terminal.
+        3. A SECTION separator is defined to distinguish initial values from the modified ones.
+    */
+    Customer customer = NewCustomer(1, "John Doe", "123 Main St, Anytown, USA", "john.doe@example.com");
+    Product product = NewProduct(1, "Product A", 10.99, 100);
+    Sale sale = NewSale(1, 1234, 1099.00);
 
-    PrintCustomer(customer);
-    PrintProduct(product);
-    PrintSale(sale);
+    PrintCustomer(customer); // Printing initial customer details
+    PrintProduct(product);   // Printing initial product details
+    PrintSale(sale);         // Printing initial sale details
 
-    SECTION;
+    SECTION; // Printing a section separator for clarity
     
-    // Modify the values of the structs.
-    SetCustomerID(&customer, 2);
-    SetCustomerName(&customer, "Alice Smith");
-    SetCustomerAddress(&customer, "456 Oak St, Smalltown, USA");
-    SetCustomerEmail(&customer, "alice.smith@example.com");
+    // Modification of initial values (as requested by our assignment)
+    /*
+        Here:
+        1. Initial values of each struct are changed to new dummy variables.
+        2. Modified values are printed as requested.
+    */
+    customer.ID = 2; // Change customer ID
+    strcpy(customer.Name, "Alice Smith"); // Change customer name
+    strcpy(customer.Address, "456 Oak St, Smalltown, USA"); // Change customer address
+    strcpy(customer.Email, "alice.smith@example.com"); // Change customer email
 
-    SetProductID(&product, 2);
-    SetProductName(&product, "Product B");
-    SetProductPrice(&product, 9.99);
-    SetProductQuantity(&product, 50);
+    product.ID = 2; // Change product ID
+    product.Price = 9.99; // Change product price
+    product.Quantity = 50; // Change product quantity
+    strcpy(product.Name, "Product B"); // Change product name
 
-    SetSaleCustomerID(&sale, 101);
-    SetSaleProductID(&sale, 2);
-    SetSaleAmount(&sale, 99.95);
+    sale.CustomerID = 101; // Change sale's customer ID
+    sale.ProductID = 2; // Change sale's product ID
+    sale.Amount = 99.95; // Change sale amount
 
-    // Print the modified values like it was requested.
-    PrintCustomer(customer);
-    PrintProduct(product);
-    PrintSale(sale);
+    // Print the modified values
+    PrintCustomer(customer); // Printing modified customer details
+    PrintProduct(product);   // Printing modified product details
+    PrintSale(sale);         // Printing modified sale details
     
     return 0;
-
 }
