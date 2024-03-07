@@ -1,6 +1,7 @@
 # Ignore .history and .vscode folders
 .history/
 .vscode/
+*.log
 
 # Ignore .exe files
 *.exe
