@@ -19,6 +19,12 @@ This repository contains assignments for the Intermediate Programming class. Eac
 - **string_to_word**: A program to split a string into words.
 - **swap_pointers**: A program to swap two values using pointers.
 
+### Assignment 3
+- **prob1_prob2**: A program to initialize a few structs, assign values, reassign the values and print them.
+- **prob3**: A program to determine the size difference between one array type and a struct type that holds that array type.
+- **prob4**: A program that dynamically allocates a three dimensional array and adds all the values of that array together and prints the result.
+
+
 ## Instructions
 
 Each assignment folder contains a `compile_and_save.sh` script which compiles the source code and saves the output. Follow the instructions provided in the respective assignment's README file for compilation and execution.
